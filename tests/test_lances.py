@@ -1,15 +1,20 @@
-from unittest import TestCase
+import unittest
 
 from src.dominio import Cliente, Lance, Leilao
 
 
-class TestLances(TestCase):
+class TestLances(unittest.TestCase):
+    def setUpClass():
+        # SetUp antes de todos os testes da classe
+        pass
+
     def setUp(self):
+        # SetUp antes de cada testes da classe
         self.phyl = Cliente("Phyl")
         self.lance_do_phyl = Lance(self.phyl, 150.0)
         self.leilao = Leilao("1 Saco de Arroz de 5kg")
 
-    def test_deve_retornar_o_maior_e_o_menor_valor_de_um_lance_quando_adicionados_em_ordem_crescente(self):
+    def test_maior_e_menor_valor_de_um_lance_quando_adicionados_ordem_crescente(self):
         igor = Cliente("Igor")
         lance_do_igor = Lance(igor, 100.0)
 
@@ -22,7 +27,7 @@ class TestLances(TestCase):
         self.assertEqual(menor_valor_esperado, self.leilao.menor_lance)
         self.assertEqual(maior_valor_esperado, self.leilao.maior_lance)
 
-    def test_deve_retornar_o_maior_e_o_menor_valor_de_um_lance_quando_adicionados_em_ordem_decrescente(self):
+    def test_maior_e_menor_valor_de_um_lance_quando_adicionados_ordem_decrescente(self):
         luana = Cliente("Luana")
         lance_do_luana = Lance(luana, 80.0)
 
@@ -35,13 +40,13 @@ class TestLances(TestCase):
         self.assertEqual(menor_valor_esperado, self.leilao.menor_lance)
         self.assertEqual(maior_valor_esperado, self.leilao.maior_lance)
 
-    def test_deve_retornar_o_mesmo_valor_para_o_maior_e_menor_lance_quando_leilao_tiver_um_lance(self):
+    def test_mesmo_valor_para_o_maior_e_menor_lance_quando_leilao_tiver_um_lance(self):
         self.leilao.propoe(self.lance_do_phyl)
 
         self.assertEqual(150.0, self.leilao.menor_lance)
         self.assertEqual(150.0, self.leilao.maior_lance)
 
-    def test_deve_retornar_o_maior_e_o_menor_valor_quando_o_leilao_tiver_tres_lances(self):
+    def test_maior_e_menor_valor_quando_o_leilao_tiver_tres_lances(self):
         igor = Cliente("Igor")
         lance_do_igor = Lance(igor, 10.0)
         sarah = Cliente("Sarah")
@@ -57,3 +62,11 @@ class TestLances(TestCase):
 
         self.assertEqual(menor_valor_esperado, self.leilao.menor_lance)
         self.assertEqual(maior_valor_esperado, self.leilao.maior_lance)
+
+    def tearDown(self):
+        # TearDown depois de cada teste
+        pass
+
+    def tearDownClass():
+        # TearDown depois de todos os testes da classe
+        pass

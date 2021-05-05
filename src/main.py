@@ -1,4 +1,4 @@
-from src.dominio import Cliente, Lance, Leilao
+from dominio import Cliente, Lance, Leilao
 
 phyl = Cliente("Phyl")
 igor = Cliente("Igor")
